@@ -1,4 +1,4 @@
-# Simple Builder
+# 🏗️ Simple Builder
 The challenges of using generic classes for object creation can be addressed by applying the **Builder Design Pattern**.  
 
 ## Restrict Direct Creation of HttpRequest Objects
