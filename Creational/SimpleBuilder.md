@@ -56,7 +56,8 @@ public class HttpRequest {
 - By not exposing the **HttpRequest** object directly, this class allows controlled construction by adding only the desired parameters.  
 - Each method returns the current **HttpRequestBuilder** reference, enabling method chaining to add parameters step by step.  
 - Internally, these methods modify the same underlying **HttpRequest** object.  
-- All validation logic, which would otherwise be scattered across different methods, can now be centralized inside the **build()** method before returning the final **HttpRequest** object to the client.  
+- All validation logic, which would otherwise be scattered across different methods, can now be centralized inside the **build()** method before returning the final **HttpRequest** object to the client.
+- Methods in the Builder class should start with `with`; this is a standard.
 
 ```java
 // Builder class as a nested class to access private members
@@ -134,6 +135,9 @@ public class Main {
 ```
 
 # Issues Being Solved
+
+## Telescoping Constructor Problem
+- If you observe, this issue is resolved automatically.
 
 ## Inconsistent State
 - The Builder Pattern prevents the **inconsistent state problem**, where a user might create and use an `HttpRequest` object without supplying all required parameters.  
