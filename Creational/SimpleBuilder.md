@@ -112,3 +112,23 @@ public class HttpRequest {
         }
     }
 ```
+
+# Issues Being Solved
+
+## Inconsistent State
+- The Builder Pattern prevents the **inconsistent state problem**, where a user might create and use an `HttpRequest` object without supplying all required parameters.  
+- (See `request4` in `builder.md` for an example of this issue.)  
+- This is resolved by introducing the **`.build()`** method. The `HttpRequest` object cannot be accessed until `.build()` is executed.  
+- The `.build()` method enforces **validation** and throws an error if the request is incomplete or invalid.  
+
+## Mutable Object
+- The `HttpRequest` is designed to be **immutable**.  
+- No setters are provided in the code. After `.build()` returns the `HttpRequest` object, its values cannot be modified directly.  
+- Fields are private, and only getters (if provided) allow read-only access.  
+- If you need to change values, you must create a **new object** via the Builder.  
+
+## Scattered Validation
+- Traditionally, each constructor required its own independent validation logic depending on the type of request.  
+- With the Builder Pattern, this is centralized.  
+- All validation logic resides in the **`.build()`** method, which ensures correctness before returning the final `HttpRequest` object.  
+
