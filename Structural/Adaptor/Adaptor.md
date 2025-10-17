@@ -48,7 +48,7 @@ class Adaptee {
     }
 }
 ```
-### Adapter takes in json data
+### Adapter implements IReports so that the client can use it
 ```java
 class Adapter implements IReports {
     private Adaptee adaptee;
@@ -58,15 +58,16 @@ class Adapter implements IReports {
 
     @Override
     public String getJsonData(String jsonData) {
-        // get xml data from adaptee
+        // Step 1: Get XML data from adaptee
         String xmlData = adaptee.getXMLData(jsonData);
-        // convert xml data back to json data
+
+        // Step 2: Convert XML data back to JSON
         String jsonData = convertXMLDataToJson(xmlData);
         return jsonData;
     }
 }
 ```
-### Client - interacts with IReports only because only it can handle json data format
+### Client interacts only with IReports (expects JSON)
 ```java
 class Client {
     public void getReport(IReports reports, String rawData) {
